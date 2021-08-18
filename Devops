@@ -1,1 +1,6 @@
 
+Deployment Process – Distributed applications often require deploying the binary and configuration files to multiple servers. 
+It becomes more challenging when having a farm of servers. It becomes challenging to figure out what, how, and where to deploy.
+
+DevOps allows the software or web developers and IT operations to deploy processes in a collaboration session that is entirely blameless. 
+It will enable us to verify what works then taking it to the next level with automation to implement continuous development. It also creates avenues for more frequent development.
