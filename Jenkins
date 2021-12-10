@@ -1,1 +1,38 @@
+Jenkins Pipelines
+Jenkins Pipelines allow us to write the Jenkins build steps in code.
+1) Build Steps allow us to write build (compile), test, deploy in code. Code means you put this code in version control.
+
+Developer --> Build --> Test --> Release --> Provision/Deploy --> Customer
+
+The pipeline is a specific job type and it can be created though Jenkins UI or the Jenkins DSL.
+Jenkins DSL - declarative pipeline.
+Groovy - scripted pipeline. Grooy is a scripting lang for the Java Platform, very similar to Java syntatically and runs in the JVM machine.
+
+Node - decides on what jenkins worker node the job will be ran. 
+def: to declare variables
+Stage: defines a building stage - build, test, or deploy
+
+node {
+      def mvnMain
+      
+      stage('Prep') {
+            git 'repo url'
+      } 
+      stage('Build') {
+      //Run the maven build
+        if (isUnix()) {
+              condition 
+        } else {
+              condition2 
+        }
+       }
+       stage('Results') {
+          junit 'path.xml'
+          archive 'target/*.jar'
+          }
+        }
+        
+        
+      
+
 
