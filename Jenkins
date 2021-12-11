@@ -8,6 +8,10 @@ The pipeline is a specific job type and it can be created though Jenkins UI or t
 Jenkins DSL - declarative pipeline.
 Groovy - scripted pipeline. Grooy is a scripting lang for the Java Platform, very similar to Java syntatically and runs in the JVM machine.
 
+Jenkins Pipeline is typically written into a text file - Jenkinsfile - which gets checked into a project's source repo.
+
+More info:  https://www.jenkins.io/doc/book/pipeline/ 
+
 Node - decides on what jenkins worker node the job will be ran. 
 def: to declare variables
 Stage: defines a building stage - build, test, or deploy
@@ -29,8 +33,10 @@ node {
        stage('Results') {
           junit 'path.xml'
           archive 'target/*.jar'
-          }
-        }
+       }
+ }
+ 
+ 
         
         
       
