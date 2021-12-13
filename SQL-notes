@@ -1,0 +1,73 @@
+------------    AGGREGATE FUNCTIONS    ----------
+
+SELECT COUNT(*) FROM Person.Person
+
+SELECT COUNT(MiddleName) From Person.Person WHERE MiddleName Is NOT NULL
+
+SELECT AVG(StandardCost) from Production.Product where StandardCost > '0.00'
+
+SELECT AVG(Freight) from Sales.SalesOrderHeader Where TerritoryID = 4
+
+SELECT MAX(ListPrice) from Production.Product
+
+
+SELECT COUNT(P.ListPrice*I.Quantity) FROM Production.Product P
+INNER JOIN Production.ProductInventory I
+ON I.ProductID = P.ProductID
+Where ListPrice > 0
+
+
+
+Select ST.Name AS [Territory Name],
+		P.FirstName + ' ' + P.LastName AS SalesPersonName,
+		SUM(TotalDue) AS [Total Sales]
+FROM Sales.SalesOrderHeader SOH
+INNER JOIN Sales.SalesPerson SP
+ON SP.BusinessEntityID = SOH.SalesPersonID
+INNER JOIN Person.Person P
+ON P.BusinessEntityID = SP.BusinessEntityID
+INNER JOIN Sales.SalesTerritory ST
+ON ST.TerritoryID = SOH.TerritoryID
+WHERE OrderDate BETWEEN '1/1/2006' AND '12/31/2006'
+GROUP BY ST.Name, P.FirstName + ' ' + P.LastName
+ORDER BY 1, 2
+
+
+
+-------------      GROUP BY      ------------------------
+
+--  1) In	the	Person.Person	table,	how	many	people	are	associated	with	each	PersonType?
+SELECT PersonType,
+		COUNT(*) AS PersonCount 
+FROM Person.Person
+GROUP BY PersonType
+
+---   2) Using	only	one	query,	find	out	how	many	products	in	Production.Product	are	the	
+--- color	�red�	and	how	many	are	�black�.
+SELECT Color,
+		COUNT(*) AS ProductCount FROM Production.Product
+WHERE Color IN ('red', 'black')
+Group By color
+
+
+--3) Using	Sales.SalesOrderHeader,	how	many	sales	occurred	in	each	territory	between	
+--July	1,	2005	and	December	31,	2006?		Order	the	results	by	the	sale	count	in	
+--descending	order.
+SELECT TerritoryID, 
+	COUNT(*) AS SalesCount 
+FROM Sales.SalesOrderHeader
+WHERE OrderDate BETWEEN '07/01/2005' AND '12/31/2006' 
+GROUP BY TerritoryID
+
+
+--4) Expanding	on	the	previous	example,	group	the	results	not	by	the	TerritoryID	but	by	
+--the	name	of	the	territory	(found	in	the	Sales.SalesTerritory	table).
+SELECT ST.Name AS [Territory Name], 
+	COUNT(*) AS SalesCount 
+FROM Sales.SalesOrderHeader SOH
+LEFT OUTER JOIN Sales.SalesTerritory ST
+ON ST.TerritoryID = SOH.TerritoryID
+WHERE OrderDate BETWEEN '07/01/2005' AND '12/31/2006' 
+GROUP BY ST.Name
+
+
