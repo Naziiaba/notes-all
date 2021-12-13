@@ -4,3 +4,8 @@ It becomes more challenging when having a farm of servers. It becomes challengin
 
 DevOps allows the software or web developers and IT operations to deploy processes in a collaboration session that is entirely blameless. 
 It will enable us to verify what works then taking it to the next level with automation to implement continuous development. It also creates avenues for more frequent development.
+
+Sonarqube - is used to check code issues, vulnarebilities, code duplication and code smell. Sonarqube is open-source.
+It allows us to continously inspect and analyze the code quality by providing detailed issue descriptions.
+
+
