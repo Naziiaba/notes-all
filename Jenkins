@@ -1,4 +1,4 @@
-Jenkins Pipelines
+nJenkins Pipelines
 Jenkins Pipelines allow us to write the Jenkins build steps in code.
 1) Build Steps allow us to write build (compile), test, deploy in code. Code means you put this code in version control.
 
@@ -36,6 +36,25 @@ node {
        }
  }
  
+ JENKINS SLAVES (Advanced) 
+Normally, only one node can host the jenkins web UI and do all the builds.
+In Prod env, we typically want to host the Jenkins web UI on a small master node, and have one or more worker nodes called Jenkins Slaves.
+- Using worker nodes expands your buld capacity, bc one worker has one or more build executors (building slots).
+If Jenkins has 2 executors, those 2 executors will run paralelly, the rest will get queued up.
+
+Static worker scaling.
+During the working hours we can scale up and in the evening scale down to save some cost.
+
+Dynamic worker scaling: 
+The Amazon EC2 Plugin- it will start new nodes auto using the AWS EC2 API and is after some time the nodes are idle, the'll get killed automatically.
+DOCKER Plugin - this plugin uses a docker host to spin up a slave container, run a jenkins build in it, and tear it down.
+Amazon ECS Plugin - Same as docker plugin, but the host is now a docker orchestrator, the EC2 Container Engine, which can host the docket containers and scale out when necessary.
+DigitalOcean Plugin - dynamically provisions droplets(nodes) to be used as Jenkins slaves.
+
+
+Creating new Jenkin Slave: login to Jenkins -> Manage Jenkins --> Manage Nodes  --> New Node
+
+
  
         
         
