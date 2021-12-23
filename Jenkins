@@ -53,6 +53,16 @@ DigitalOcean Plugin - dynamically provisions droplets(nodes) to be used as Jenki
 
 
 Creating new Jenkin Slave: login to Jenkins -> Manage Jenkins --> Manage Nodes  --> New Node
+Two way to create Jenkin Slaves: 
+1. Through SSH    2.Through jnlp. Can be done via Jenkins UI (click Launch btn) or via running a command line 'java -jar slave.jar -jnlpUrl [put here url] -secret [put secret]
+Fist make sure that Java is installed on your machine.
+
+Blue Ocean - A new Jenkins UI and provided as a plugin. It's compatible with freestyle project(projects that was build without using pipelines).
+
+SSH-agents. SSH-agent will run on the master, and will contain the private keys that are necessary to authenticate to the external systems you need acces to. 
+SSH-agent uses the same keys stored in your credentials.
+
+
 
 
  
